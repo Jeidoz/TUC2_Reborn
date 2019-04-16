@@ -1,0 +1,8 @@
+D:\Sources\My Projects\TUC2_Reborn\DataBaseManager\bin\Debug\DataBaseManager.dll
+D:\Sources\My Projects\TUC2_Reborn\DataBaseManager\bin\Debug\DataBaseManager.pdb
+D:\Sources\My Projects\TUC2_Reborn\DataBaseManager\bin\Debug\LiteDB.dll
+D:\Sources\My Projects\TUC2_Reborn\DataBaseManager\bin\Debug\LiteDB.xml
+D:\Sources\My Projects\TUC2_Reborn\DataBaseManager\obj\Debug\DataBaseManager.csproj.CoreCompileInputs.cache
+D:\Sources\My Projects\TUC2_Reborn\DataBaseManager\obj\Debug\DataBaseManager.csproj.CopyComplete
+D:\Sources\My Projects\TUC2_Reborn\DataBaseManager\obj\Debug\DataBaseManager.dll
+D:\Sources\My Projects\TUC2_Reborn\DataBaseManager\obj\Debug\DataBaseManager.pdb

@@ -1,0 +1,12 @@
+D:\Sources\My Projects\TUC2_Reborn\InitDatabase\bin\Debug\InitDatabase.exe.config
+D:\Sources\My Projects\TUC2_Reborn\InitDatabase\bin\Debug\InitDatabase.exe
+D:\Sources\My Projects\TUC2_Reborn\InitDatabase\bin\Debug\InitDatabase.pdb
+D:\Sources\My Projects\TUC2_Reborn\InitDatabase\bin\Debug\DataBaseManager.dll
+D:\Sources\My Projects\TUC2_Reborn\InitDatabase\bin\Debug\LiteDB.dll
+D:\Sources\My Projects\TUC2_Reborn\InitDatabase\bin\Debug\DataBaseManager.pdb
+D:\Sources\My Projects\TUC2_Reborn\InitDatabase\bin\Debug\LiteDB.xml
+D:\Sources\My Projects\TUC2_Reborn\InitDatabase\obj\Debug\InitDatabase.csprojAssemblyReference.cache
+D:\Sources\My Projects\TUC2_Reborn\InitDatabase\obj\Debug\InitDatabase.csproj.CoreCompileInputs.cache
+D:\Sources\My Projects\TUC2_Reborn\InitDatabase\obj\Debug\InitDatabase.csproj.CopyComplete
+D:\Sources\My Projects\TUC2_Reborn\InitDatabase\obj\Debug\InitDatabase.exe
+D:\Sources\My Projects\TUC2_Reborn\InitDatabase\obj\Debug\InitDatabase.pdb
