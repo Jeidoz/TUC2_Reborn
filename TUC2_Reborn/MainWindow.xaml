@@ -10,7 +10,7 @@
         WindowStartupLocation="CenterScreen"
         MinHeight="475" MinWidth="750"
         Title="TUC2 (The User's Code Checker)">
-    <Grid>
-        <views:UserView x:Name="UsersViewControl"/>
+    <Grid x:Name="MainGrid">
+        <!--<views:UserView x:Name="UsersViewControl"/>-->
     </Grid>
 </Window>

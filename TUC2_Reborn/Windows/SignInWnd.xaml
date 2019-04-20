@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="TUC2_Reborn.Windows.SignInWnd"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TUC2_Reborn.Windows"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*" MinHeight="225"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Ellipse Grid.Column="0" Grid.Row="1"
+                 MaxHeight="250" MaxWidth="250"
+                 Stretch="Uniform"
+                 Margin="26, 5">
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="/Images/user_logo.png"
+                            Stretch="Uniform"/>
+            </Ellipse.Fill>
+        </Ellipse>
+
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" MaxHeight="120"/>
+                <RowDefinition Height="1*" MaxHeight="120"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="Login" 
+                     Grid.Row="0"
+                     Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                     VerticalAlignment="Center"
+                     Margin="10, 3, 50, 3"
+                     FontSize="18" Foreground="Black"
+                     materialDesign:HintAssist.Hint="Введіть своє ім'я користувача (логін)"/>
+            <PasswordBox x:Name="PasswordBox"
+                         Grid.Row="1"
+                         Style="{StaticResource MaterialDesignFilledPasswordFieldPasswordBox}"
+                         VerticalAlignment="Center"
+                         Margin="10, 3, 50, 3"
+                         FontSize="18" Foreground="Black"
+                         materialDesign:HintAssist.Hint="Введіть пароль користувача"/>
+            <Grid Grid.Row="2"
+                  Margin="10, 3, 50, 3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="SignIn" Content="Увійти"
+                        Grid.Column="0"
+                        MinWidth="165" MinHeight="45"
+                        Margin="5"
+                        Click="SignIn_OnClick"/>
+                <Button x:Name="Close" Content="Закрити"
+                        Grid.Column="1"
+                        MinWidth="165" MinHeight="45"
+                        Margin="5"
+                        Click="Close_OnClick"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

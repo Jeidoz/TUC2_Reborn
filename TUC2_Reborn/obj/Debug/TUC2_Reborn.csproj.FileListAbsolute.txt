@@ -23,7 +23,8 @@ D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\bin\Debug\MaterialDesignThemes.Wp
 D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\bin\Debug\MaterialDesignThemes.Wpf.pdb
 D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\bin\Debug\MaterialDesignThemes.Wpf.xml
 D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\Views\UserView.g.cs
-D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\Views\UserView.baml
 D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\bin\Debug\MaterialDesignColors.pdb
 D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\App.baml
+D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\Windows\SignInWnd.g.cs
+D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\Windows\SignInWnd.baml

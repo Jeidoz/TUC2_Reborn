@@ -62,7 +62,6 @@ namespace DataBaseManager
         {
             return Users.Exists(Query.EQ("Login", loginForCheck));
         }
-
         public bool IsLoginExistExcept(string loginForCheck, string exceptionLogin)
         {
             var dbUser = GetUser(loginForCheck);
@@ -70,10 +69,15 @@ namespace DataBaseManager
                 return false;
             return dbUser.Login != exceptionLogin;
         }
-
         public bool IsUserExist(int id)
         {
             return Users.FindById(id) != null;
+        }
+        public bool IsPasswordsSame(string comparingPassword, string userPassword)
+        {
+            //TODO 
+            // Compare hashes of passwords in future
+            return comparingPassword == userPassword;
         }
 
         public Role GetRole(int index)
@@ -90,7 +94,7 @@ namespace DataBaseManager
         }
         public User GetUser(string login)
         {
-            return Users.FindOne(Query.EQ("login", login));
+            return Users.FindOne(Query.EQ("Login", login));
         }
         public IEnumerable<User> GetAllUsers()
         {
