@@ -6,3 +6,4 @@ D:\Sources\My Projects\TUC2_Reborn\DataBaseManager\obj\Debug\DataBaseManager.csp
 D:\Sources\My Projects\TUC2_Reborn\DataBaseManager\obj\Debug\DataBaseManager.csproj.CopyComplete
 D:\Sources\My Projects\TUC2_Reborn\DataBaseManager\obj\Debug\DataBaseManager.dll
 D:\Sources\My Projects\TUC2_Reborn\DataBaseManager\obj\Debug\DataBaseManager.pdb
+D:\Sources\My Projects\TUC2_Reborn\DataBaseManager\obj\Debug\DataBaseManager.csprojAssemblyReference.cache

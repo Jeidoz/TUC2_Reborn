@@ -8,20 +8,31 @@
              xmlns:viewModel="clr-namespace:TUC2_Reborn.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>
-        <viewModel:UserViewModel/>
-    </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="100" Width="1*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition MaxHeight="45"/>
+        </Grid.RowDefinitions>
 
-        <ListView x:Name="Users" ItemsSource="{Binding Path=UserLogins}"
-                  Grid.Column="0"
+        <ListView x:Name="Users"
+                  Grid.Column="0" Grid.Row="0"
                   Margin="5"
-                  SelectionChanged="Users_OnSelectionChanged"/>
-        <DockPanel Grid.Column="1">
+                  SelectionChanged="Users_OnSelectionChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=Login}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button x:Name="NewUser" Content="Новий користувач"
+                Grid.Column="0" Grid.Row="1"
+                Margin="5"
+                Click="NewUser_OnClick"/>
+        <DockPanel Grid.Column="1" Grid.Row="0">
             <ScrollViewer IsTabStop="True" HorizontalScrollBarVisibility="Disabled">
                 <ItemsControl x:Name="ItemControl">
                     <ItemsControl.ItemTemplate>
@@ -48,18 +59,18 @@
                                     <ComboBoxItem Content="Викладач"/>
                                     <ComboBoxItem Content="Студент"/>
                                 </ComboBox>
-                                <TextBox x:Name="FirstName" Text="{Binding Path=FirstName}"
+                                <TextBox x:Name="LastName" Text="{Binding Path=LastName}" 
                                          DockPanel.Dock="Top"
                                          Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
                                          Margin="10, 7, 10, 0"
                                          FontSize="18" Foreground="Black"
-                                         materialDesign:HintAssist.Hint="Ім'я"/>
-                                <TextBox x:Name="LastName" Text="{Binding Path=LastName}" 
+                                         materialDesign:HintAssist.Hint="Прізвище"/>
+                                <TextBox x:Name="FirstName" Text="{Binding Path=FirstName}"
                                          DockPanel.Dock="Top"
                                          Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
                                          Margin="10, 7, 10, 7"
                                          FontSize="18" Foreground="Black"
-                                         materialDesign:HintAssist.Hint="Прізвище"/>
+                                         materialDesign:HintAssist.Hint="Ім'я"/>
                                 <TextBox x:Name="FatherName" Text="{Binding Path=FatherName}" 
                                          DockPanel.Dock="Top"
                                          Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
@@ -72,5 +83,19 @@
                 </ItemsControl>
             </ScrollViewer>
         </DockPanel>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="SaveUser" Content="Зберегти"
+                    Grid.Column="0"
+                    Margin="5"
+                    Click="SaveUser_OnClick"/>
+            <Button x:Name="RemoveUser" Content="Видалити"
+                    Grid.Column="1"
+                    Margin="5"
+                    Click="RemoveUser_OnClick"/>
+        </Grid>
     </Grid>
 </UserControl>

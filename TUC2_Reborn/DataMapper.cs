@@ -10,7 +10,6 @@ namespace TUC2_Reborn
             return new UserModel
             {
                 Id = dbUser.Id,
-                RoleName = dbUser.Role.Name,
                 Login = dbUser.Login,
                 Password = dbUser.Password,
                 FirstName = dbUser.FirstName,
@@ -24,7 +23,7 @@ namespace TUC2_Reborn
             return new User
             {
                 Id = uiUser.Id,
-                Role = GlobalHelper.Database.GetRole(uiUser.RoleName),
+                Role = GlobalHelper.Database.GetRole(uiUser.RoleIndex),
                 Login = uiUser.Login,
                 Password = uiUser.Password,
                 FirstName = uiUser.FirstName,

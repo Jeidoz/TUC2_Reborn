@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using TUC2_Reborn.Models;
 
 namespace TUC2_Reborn
 {

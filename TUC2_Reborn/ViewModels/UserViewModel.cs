@@ -39,8 +39,8 @@ namespace TUC2_Reborn.ViewModels
         {
             RoleNames = new ObservableCollection<string>
             {
-                "Викладач",
-                "Студент"
+                GlobalHelper.TeacherRoleName,
+                GlobalHelper.StudentRoleName
             };
         }
     }

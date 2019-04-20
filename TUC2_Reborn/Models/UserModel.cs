@@ -6,7 +6,6 @@ namespace TUC2_Reborn.Models
 {
     public class UserModel : INotifyPropertyChanged
     {
-        private string _roleName;
         private int _roleIndex;
         private string _login;
         private string _password;
@@ -15,35 +14,14 @@ namespace TUC2_Reborn.Models
         private string _fatherName;
 
         public int Id { get; set; }
-
-        public string RoleName
-        {
-            get => _roleName;
-            set
-            {
-                if (value == _roleName) return;
-                _roleName = value;
-                OnPropertyChanged(nameof(RoleName));
-            }
-        }
-
         public int RoleIndex
         {
             get => _roleIndex;
             set
             {
-                switch (RoleName)
-                {
-                    case "Викладач":
-                        _roleIndex = 0;
-                        break;
-                    case "Студент":
-                        _roleIndex = 1;
-                        break;
-                    default:
-                        _roleIndex = -1;
-                        break;
-                }
+                if (value == _roleIndex) return;
+                _roleIndex = value;
+
                 OnPropertyChanged(nameof(RoleIndex));
             }
         }

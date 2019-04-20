@@ -58,6 +58,28 @@ namespace DataBaseManager
             Users = _databaseInstance.GetCollection<User>("users");
         }
 
+        public bool IsLoginExist(string loginForCheck)
+        {
+            return Users.Exists(Query.EQ("Login", loginForCheck));
+        }
+
+        public bool IsLoginExistExcept(string loginForCheck, string exceptionLogin)
+        {
+            var dbUser = GetUser(loginForCheck);
+            if (dbUser == null)
+                return false;
+            return dbUser.Login != exceptionLogin;
+        }
+
+        public bool IsUserExist(int id)
+        {
+            return Users.FindById(id) != null;
+        }
+
+        public Role GetRole(int index)
+        {
+            return Roles.FindById(index);
+        }
         public Role GetRole(string roleName)
         {
             return Roles.FindOne(Query.EQ("Name", roleName));
@@ -74,27 +96,19 @@ namespace DataBaseManager
         {
             return Users.IncludeAll().FindAll();
         }
-        public int CreateOrUpdateUser(int id, string login = null, string password = null,
-            string firstName = null, string lastName = null, string fatherName = null)
-        { 
-            User oldUser = GetUser(id);
-
-            oldUser.Login = login ?? oldUser.Login;
-            oldUser.Password = password ?? oldUser.Password;
-            oldUser.FirstName = firstName ?? oldUser.FirstName;
-            oldUser.LastName = lastName ?? oldUser.LastName;
-            oldUser.FatherName = fatherName ?? oldUser.FatherName;
-
-            int userId = oldUser.Id;
-            bool isUserExist = Users.Update(oldUser);
-            if (!isUserExist)
-            {
-                userId = Users.Insert(oldUser);
-            }
-
-            return userId;
+        public int AddUser(User user)
+        {
+            return Users.Insert(user);
         }
-       
+        public int UpdateUser(User newUserData)
+        {
+            Users.Update(newUserData);
+            return newUserData.Id;
+        }
+        public bool RemoveUser(int id)
+        {
+            return Users.Delete(id);
+        }
 
         public void Dispose()
         {

@@ -7,7 +7,9 @@
         xmlns:views="clr-namespace:TUC2_Reborn.Views"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        MinHeight="475" MinWidth="750"
+        Title="TUC2 (The User's Code Checker)">
     <Grid>
         <views:UserView x:Name="UsersViewControl"/>
     </Grid>
