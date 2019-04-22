@@ -2,6 +2,7 @@
 using TUC2_Reborn.Models;
 using TUC2_Reborn.Views;
 using TUC2_Reborn.Windows;
+using TUC2_Reborn.Windows.AdminControls;
 
 namespace TUC2_Reborn
 {
@@ -29,7 +30,7 @@ namespace TUC2_Reborn
             MainGrid.Children.Clear();
             if (LoginedUser.RoleIndex == (int)GlobalHelper.RoleIndex.Teacher)
             {
-                MainGrid.Children.Add(new UserView());
+                MainGrid.Children.Add(new AdminTemplate());
             }
         }
     }

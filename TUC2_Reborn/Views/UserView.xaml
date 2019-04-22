@@ -53,7 +53,9 @@
                                 <ComboBox x:Name="Roles"
                                           SelectedIndex="{Binding Path=RoleIndex, Mode=TwoWay}"
                                           DockPanel.Dock="Top"
-                                          Margin="30, 7, 30, 0" Foreground="Black"
+                                          Margin="25, 7, 25, 0"
+                                          FontSize="17"
+                                          Foreground="Black"
                                           Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                                           materialDesign:HintAssist.Hint="Роль користувача">
                                     <ComboBoxItem Content="Викладач"/>

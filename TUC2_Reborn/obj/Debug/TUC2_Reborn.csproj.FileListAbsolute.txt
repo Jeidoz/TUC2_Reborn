@@ -28,3 +28,5 @@ D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\bin\Debug\MaterialDesignColors.pd
 D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\App.baml
 D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\Windows\SignInWnd.g.cs
 D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\Windows\SignInWnd.baml
+D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\Windows\AdminControls\AdminTemplate.g.cs
+D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\Windows\AdminControls\AdminTemplate.baml

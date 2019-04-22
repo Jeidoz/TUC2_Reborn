@@ -67,6 +67,9 @@
     <Compile Include="Views\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\AdminControls\AdminInterface.xaml.cs">
+      <DependentUpon>AdminInterface.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\SignInWnd.xaml.cs">
       <DependentUpon>SignInWnd.xaml</DependentUpon>
     </Compile>
@@ -85,6 +88,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\UserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AdminControls\AdminInterface.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

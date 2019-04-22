@@ -54,7 +54,6 @@ namespace TUC2_Reborn.Windows
             mainWindow.LoginedUser = loginedUser;
             mainWindow.ShowLoginedUserControl();
         }
-
         private void Close_OnClick(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
