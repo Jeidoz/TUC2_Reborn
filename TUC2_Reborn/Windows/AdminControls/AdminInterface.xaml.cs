@@ -35,6 +35,9 @@ namespace TUC2_Reborn.Windows.AdminControls
                 case "Users":
                     activeControl = new UserView();
                     break;
+                case "Challenges":
+                    activeControl = new ChallengeView();
+                    break;
                 case "Logout":
                     var mainWnd = Window.GetWindow(this) as MainWindow;
                     mainWnd.ShowSignInWindow();

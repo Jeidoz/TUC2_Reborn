@@ -45,7 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseContext.cs" />
+    <Compile Include="Entities\Challenge.cs" />
     <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\Test.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Exceptions\CannotCreateDbInstance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

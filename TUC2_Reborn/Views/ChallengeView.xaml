@@ -1,0 +1,164 @@
+﻿<UserControl x:Class="TUC2_Reborn.Views.ChallengeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TUC2_Reborn.Views"
+             xmlns:viewModel="clr-namespace:TUC2_Reborn.ViewModels"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="100px" Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45px"/>
+            <RowDefinition/>
+            <RowDefinition Height="65px"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Список завдань"
+                   Grid.Row="0" Grid.Column="0"
+                   Style="{StaticResource MaterialDesignHeadlineTextBlock}"
+                   TextWrapping="Wrap"
+                   Foreground="Black" FontSize="22px"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Text="Інформація про виділене завдання"
+                   Grid.Row="0" Grid.Column="1"
+                   Style="{StaticResource MaterialDesignHeadlineTextBlock}"
+                   TextWrapping="Wrap"
+                   Foreground="Black" FontSize="22px"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <ListView x:Name="ChallengeNamesList"
+                  Grid.Row="1" Grid.Column="0"
+                  ItemsSource="{Binding Path=ChallengeNames, Mode=TwoWay}"
+                  Margin="5"
+                  SelectedIndex="{Binding Path=SelectedChallengeIndex}"
+                  SelectionChanged="ChallengeNamesList_OnSelectionChanged"/>
+        <Button x:Name="AddNewChallenge" Content="Додати"
+                Grid.Row="2" Grid.Column="0"
+                FontSize="18px" FontWeight="SemiBold"
+                MinHeight="45px"
+                Margin="10"
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                Click="AddNewChallenge_OnClick"/>
+
+        <DockPanel Grid.Row="1" Grid.Column="1">
+            <ScrollViewer IsTabStop="True"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ItemsControl x:Name="ItemsControl">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBox x:Name="ChallengeName"
+                                         Text="{Binding Path=Name}"
+                                         DockPanel.Dock="Top"
+                                         Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                                         Margin="10, 7, 10, 0"
+                                         FontSize="18" Foreground="Black"
+                                         materialDesign:HintAssist.Hint="Назва завдання"/>
+                                <TextBox x:Name="ChallengeDescription"
+                                         Text="{Binding Path=Description}"
+                                         DockPanel.Dock="Top"
+                                         Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                                         Margin="10, 7, 5, 0"
+                                         MinHeight="160"
+                                         AcceptsReturn="True"
+                                         TextWrapping="Wrap"
+                                         FontSize="18" Foreground="Black"
+                                         VerticalScrollBarVisibility="Auto"
+                                         materialDesign:HintAssist.Hint="Опис завдання"/>
+                                <TextBlock Text="Приклади вводу і виводу програми"
+                                           DockPanel.Dock="Top"
+                                           Style="{StaticResource MaterialDesignSubheadingTextBlock}"
+                                           Margin="10, 7, 5, 0"
+                                           HorizontalAlignment="Center"
+                                           Foreground="Black" FontWeight="SemiBold"
+                                           FontSize="15px"/>
+                                <Grid Margin="0, 7, 0, 0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <DataGrid x:Name="DataGridExamples"
+                                              Grid.ColumnSpan="2"
+                                              ItemsSource="{Binding Path=Examples}"
+                                              Margin="5 5"
+                                              AutoGenerateColumns="False"
+                                              CanUserSortColumns="True"
+                                              CanUserAddRows="True"
+                                              CanUserDeleteRows="True"
+                                              IsReadOnly="False">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Binding="{Binding Path=Input}"
+                                                                Header="Вхідні дані"
+                                                                Width="1*">
+                                                <DataGridTextColumn.ElementStyle>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="TextWrapping" Value="Wrap"/>
+                                                    </Style>
+                                                </DataGridTextColumn.ElementStyle>
+                                                <DataGridTextColumn.EditingElementStyle>
+                                                    <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                                                        <Setter Property="TextWrapping" Value="Wrap"/>
+                                                        <Setter Property="AcceptsReturn" Value="True"/>
+                                                    </Style>
+                                                </DataGridTextColumn.EditingElementStyle>
+                                            </DataGridTextColumn>
+                                            <DataGridTextColumn Binding="{Binding Path=Output}"
+                                                                Header="Вихідні дані"
+                                                                Width="1*">
+                                                <DataGridTextColumn.ElementStyle>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="TextWrapping" Value="Wrap"/>
+                                                    </Style>
+                                                </DataGridTextColumn.ElementStyle>
+                                                <DataGridTextColumn.EditingElementStyle>
+                                                    <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                                                        <Setter Property="TextWrapping" Value="Wrap"/>
+                                                        <Setter Property="AcceptsReturn" Value="True"/>
+                                                    </Style>
+                                                </DataGridTextColumn.EditingElementStyle>
+                                            </DataGridTextColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                    <Button x:Name="EditTests" Content="Редагувати тести"
+                                            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                            Height="45px" Margin="5, 10"
+                                            FontSize="22px"
+                                            Click="EditTests_OnClick"/>
+                                </Grid>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </DockPanel>
+
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="Save" Content="Зберегти"
+                    Grid.Column="0"
+                    FontSize="18px" FontWeight="SemiBold"
+                    MinHeight="45px" Margin="10"
+                    HorizontalAlignment="Stretch"
+                    Click="Save_OnClick"/>
+            <Button x:Name="Remove" Content="Видалити"
+                    Grid.Column="1" 
+                    FontSize="18px" FontWeight="SemiBold"
+                    MinHeight="45px" Margin="10"
+                    HorizontalAlignment="Stretch"
+                    Click="Remove_OnClick"/>
+        </Grid>
+    </Grid>
+</UserControl>

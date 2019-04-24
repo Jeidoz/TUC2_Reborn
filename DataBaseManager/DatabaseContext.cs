@@ -4,6 +4,7 @@ using LiteDB;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DataBaseManager
 {
@@ -13,6 +14,8 @@ namespace DataBaseManager
         private readonly LiteDatabase _databaseInstance;
         private LiteCollection<Role> _roles;
         private LiteCollection<User> _users;
+        private LiteCollection<Test> _tests;
+        private LiteCollection<Challenge> _challenges;
 
         public LiteCollection<User> Users
         {
@@ -23,6 +26,16 @@ namespace DataBaseManager
         {
             get => _roles;
             set => _roles = value ?? _databaseInstance.GetCollection<Role>("roles");
+        }
+        public LiteCollection<Test> Tests
+        {
+            get => _tests;
+            set => _tests = value ?? _databaseInstance.GetCollection<Test>("tests");
+        }
+        public LiteCollection<Challenge> Challenges
+        {
+            get => _challenges;
+            set => _challenges = value ?? _databaseInstance.GetCollection<Challenge>("challenges");
         }
 
         public DatabaseContext(string dbFileName)
@@ -56,8 +69,11 @@ namespace DataBaseManager
         {
             Roles = _databaseInstance.GetCollection<Role>("roles");
             Users = _databaseInstance.GetCollection<User>("users");
+            Tests = _databaseInstance.GetCollection<Test>("tests");
+            Challenges = _databaseInstance.GetCollection<Challenge>("challenges");
         }
 
+        // CHECKERS
         public bool IsLoginExist(string loginForCheck)
         {
             return Users.Exists(Query.EQ("Login", loginForCheck));
@@ -79,7 +95,7 @@ namespace DataBaseManager
             // Compare hashes of passwords in future
             return comparingPassword == userPassword;
         }
-
+        // ROLES
         public Role GetRole(int index)
         {
             return Roles.FindById(index);
@@ -88,6 +104,7 @@ namespace DataBaseManager
         {
             return Roles.FindOne(Query.EQ("Name", roleName));
         }
+        // USERS
         public User GetUser(int id)
         {
             return Users.FindById(id);
@@ -113,7 +130,39 @@ namespace DataBaseManager
         {
             return Users.Delete(id);
         }
+        // TESTS
+        public Test GetTest(int id)
+        {
+            return Tests.FindById(id);
+        }
+        public IEnumerable<Test> GetTests(int startId, int endId)
+        {
+            List<Test> tests = new List<Test>();
+            for (int currentId = startId; currentId <= endId; currentId++)
+            {
+                Test dbTest = GetTest(currentId);
+                tests.Add(dbTest);
+            }
 
+            return tests;
+        }
+        public int AddTest(Test test)
+        {
+            return Tests.Insert(test);
+        }
+        // CHALLENGES
+        public Challenge GetChallenge(int id)
+        {
+            return Challenges.IncludeAll().FindById(id);
+        }
+        public IEnumerable<Challenge> GetAllChallenges()
+        {
+            return Challenges.IncludeAll().FindAll();
+        }
+        public int AddChallenge(Challenge challenge)
+        {
+            return Challenges.Insert(challenge);
+        }
         public void Dispose()
         {
             _databaseInstance.Dispose();

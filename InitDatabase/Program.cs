@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using DataBaseManager;
 using DataBaseManager.Entities;
 
@@ -14,6 +17,8 @@ namespace InitDatabase
             ClearDatabase();
             InitializeRoles();
             InitializeUsers();
+            InitializeTests();
+            InitializeChallenges();
         }
 
         private static void ClearDatabase()
@@ -54,6 +59,35 @@ namespace InitDatabase
                 LastName = "Хаврук",
                 FatherName = "Володимирович"
             });
+        }
+        private static void InitializeTests()
+        {
+            Random rand = new Random();
+            for (int i = 0; i < 10; i++)
+            {
+                int firstNumber = rand.Next(-100, 100);
+                int secondNumber = rand.Next(-100, 100);
+                int sum = firstNumber + secondNumber;
+
+                Test newTest = new Test
+                {
+                    Input = $"{firstNumber} {secondNumber}",
+                    Output = sum.ToString()
+                };
+
+                Context.AddTest(newTest);
+            }
+        }
+        private static void InitializeChallenges()
+        {
+            Challenge firstChallenge = new Challenge()
+            {
+                Name = "Просте додавання",
+                Description = "Вам потрібно написати програму додавання двох цілочисельних чисел.",
+                Examples = Context.GetTests(1, 3).ToList(),
+                ControlTests = Context.GetTests(1, 10).ToList()
+            };
+            Context.AddChallenge(firstChallenge);
         }
     }
 }

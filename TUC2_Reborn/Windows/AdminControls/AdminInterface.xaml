@@ -91,7 +91,7 @@
                                        Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem x:Name="Challanges" Height="60">
+                    <ListViewItem x:Name="Challenges" Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Trophy"
                                                      Height="25" Width="25"

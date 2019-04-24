@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\App.xaml
-4722636661
+61509855006
 
-141506110681
+20920515076
 17-1781444151
-MainWindow.xaml;Views\UserView.xaml;Windows\AdminControls\AdminInterface.xaml;Windows\SignInWnd.xaml;
+MainWindow.xaml;Views\ChallengeView.xaml;Views\TestView.xaml;Views\UserView.xaml;Windows\AdminControls\AdminInterface.xaml;Windows\SignInWnd.xaml;
 
-False
+True
 
