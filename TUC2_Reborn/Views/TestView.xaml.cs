@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TUC2_Reborn.Models;
 using TUC2_Reborn.ViewModels;
 
@@ -21,7 +8,7 @@ namespace TUC2_Reborn.Views
     /// <summary>
     /// Interaction logic for TestView.xaml
     /// </summary>
-    public partial class TestView : Window
+    public partial class TestView
     {
         private ChallengeModel _currentChallenge;
         private TestViewModel _testViewModel;
@@ -56,6 +43,18 @@ namespace TUC2_Reborn.Views
                 test.IsSelected = select;
             }
         }
+        private void UpdateTests()
+        {
+            foreach (var test in _testViewModel.Tests)
+            {
+                var dbTest = GlobalHelper.Database.GetTest(test.Id);
+                var mapperTest = DataMapper.Map(test);
+                if (dbTest == null)
+                    test.Id = GlobalHelper.Database.AddTest(mapperTest);
+                else
+                    GlobalHelper.Database.UpdateTest(mapperTest);
+            }
+        }
 
         private void Cancel_OnClick(object sender, RoutedEventArgs e)
         {
@@ -65,16 +64,19 @@ namespace TUC2_Reborn.Views
         private void RemoveSelected_OnClick(object sender, RoutedEventArgs e)
         {
             for (int i = _testViewModel.Tests.Count - 1; i >= 0; i--)
-            {
                 if (_testViewModel.Tests[i].IsSelected)
-                {
                     _testViewModel.Tests.RemoveAt(i);
-                }
-            }
         }
         private void Save_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var dbChallenge = GlobalHelper.Database.GetChallenge(_currentChallenge.Id);
+            UpdateTests();
+            dbChallenge.ControlTests = DataMapper.Map(_testViewModel.Tests).ToList();
+            GlobalHelper.Database.UpdateChallenge(dbChallenge);
+
+            MessageBox.Show("Тести були успішно збережені у базу даних", "Успішне збереження", MessageBoxButton.OK, MessageBoxImage.Information);
+            DialogResult = true;
+            Close();
         }
     }
 }

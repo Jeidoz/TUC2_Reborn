@@ -64,16 +64,10 @@ namespace TUC2_Reborn.Views
         }
         private void Users_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _selectedUserIndex = Users.SelectedIndex;
-
-            if (_selectedUserIndex == -1)
-            {
+            if (Users.SelectedIndex < 0)
                 return;
-                ////TO DO
-                ////0 index in Collection
-                //_selectedUserIndex = Math.Max(_users.Count - 1, 0);
-            }
 
+            _selectedUserIndex = Users.SelectedIndex;
             ChangeCurrentUserData();
         }
         private void NewUser_OnClick(object sender, RoutedEventArgs e)
@@ -129,7 +123,7 @@ namespace TUC2_Reborn.Views
                 GlobalHelper.Database.UpdateUser(focusedUser);
 
                 message = $"Дані про користувача із іменем '{usr.FullName}'\n"
-                          + $"(логін: '{usr.Login}') були успішно оновлена і збережена у базу даних.";
+                          + $"(логін: '{usr.Login}') були успішно оновлені і збережені у базу даних.";
                 caption = "Успішне оновлення даних користувача";
             }
             MessageBox.Show(message, caption, MessageBoxButton.OK, MessageBoxImage.Information);

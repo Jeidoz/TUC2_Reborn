@@ -2,9 +2,7 @@
 using DataBaseManager.Exceptions;
 using LiteDB;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace DataBaseManager
 {
@@ -74,6 +72,10 @@ namespace DataBaseManager
         }
 
         // CHECKERS
+        public bool IsUserExist(int id)
+        {
+            return Users.FindById(id) != null;
+        }
         public bool IsLoginExist(string loginForCheck)
         {
             return Users.Exists(Query.EQ("Login", loginForCheck));
@@ -85,15 +87,26 @@ namespace DataBaseManager
                 return false;
             return dbUser.Login != exceptionLogin;
         }
-        public bool IsUserExist(int id)
-        {
-            return Users.FindById(id) != null;
-        }
         public bool IsPasswordsSame(string comparingPassword, string userPassword)
         {
             //TODO 
             // Compare hashes of passwords in future
             return comparingPassword == userPassword;
+        }
+        public bool IsChallengeExist(int id)
+        {
+            return Challenges.FindById(id) != null;
+        }
+        public bool IsChallengeExist(string challengeNameForCheck)
+        {
+            return Challenges.Exists(Query.EQ("Name", challengeNameForCheck));
+        }
+        public bool IsChallengeExistExcept(string challengeNameForCheck, string exceptionChallengeName)
+        {
+            var dbChallenge = GetChallenge(challengeNameForCheck);
+            if (dbChallenge == null)
+                return false;
+            return dbChallenge.Name != exceptionChallengeName;
         }
         // ROLES
         public Role GetRole(int index)
@@ -150,10 +163,18 @@ namespace DataBaseManager
         {
             return Tests.Insert(test);
         }
+        public bool UpdateTest(Test newTestData)
+        {
+            return Tests.Update(newTestData);
+        }
         // CHALLENGES
         public Challenge GetChallenge(int id)
         {
             return Challenges.IncludeAll().FindById(id);
+        }
+        public Challenge GetChallenge(string challengeName)
+        {
+            return Challenges.IncludeAll().FindOne(Query.EQ("Name", challengeName));
         }
         public IEnumerable<Challenge> GetAllChallenges()
         {
@@ -162,6 +183,16 @@ namespace DataBaseManager
         public int AddChallenge(Challenge challenge)
         {
             return Challenges.Insert(challenge);
+        }
+        public int UpdateChallenge(Challenge newChallengeData)
+        {
+            
+            Challenges.Update(newChallengeData);
+            return newChallengeData.Id;
+        }
+        public bool RemoveChallenge(int id)
+        {
+            return Challenges.Delete(id);
         }
         public void Dispose()
         {

@@ -34,10 +34,14 @@
 
         <ListView x:Name="ChallengeNamesList"
                   Grid.Row="1" Grid.Column="0"
-                  ItemsSource="{Binding Path=ChallengeNames, Mode=TwoWay}"
                   Margin="5"
-                  SelectedIndex="{Binding Path=SelectedChallengeIndex}"
-                  SelectionChanged="ChallengeNamesList_OnSelectionChanged"/>
+                  SelectionChanged="ChallengeNamesList_OnSelectionChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=Name}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Button x:Name="AddNewChallenge" Content="Додати"
                 Grid.Row="2" Grid.Column="0"
                 FontSize="18px" FontWeight="SemiBold"
@@ -89,7 +93,7 @@
                                     </Grid.RowDefinitions>
                                     <DataGrid x:Name="DataGridExamples"
                                               Grid.ColumnSpan="2"
-                                              ItemsSource="{Binding Path=Examples}"
+                                              ItemsSource="{Binding Path=Examples, Mode=TwoWay}"
                                               Margin="5 5"
                                               AutoGenerateColumns="False"
                                               CanUserSortColumns="True"
