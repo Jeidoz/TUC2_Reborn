@@ -11,12 +11,10 @@ namespace TUC2_Reborn.ViewModels
     public class ChallengeViewModel
     {
         public ObservableCollection<ChallengeModel> Challenges { get; set; }
-        public ObservableCollection<string> ChallengeNames { get; set; }
 
         public ChallengeViewModel()
         {
             InitializeChallenges();
-            InitializeChallengeNames();
         }
 
         private void InitializeChallenges()
@@ -29,14 +27,6 @@ namespace TUC2_Reborn.ViewModels
             foreach (var dbChallenge in allDbChallenges)
             {
                 Challenges.Add(DataMapper.Map(dbChallenge));
-            }
-        }
-        private void InitializeChallengeNames()
-        {
-            ChallengeNames = new ObservableCollection<string>();
-            foreach (var challenge in Challenges)
-            {
-                ChallengeNames.Add(challenge.Name);
             }
         }
     }

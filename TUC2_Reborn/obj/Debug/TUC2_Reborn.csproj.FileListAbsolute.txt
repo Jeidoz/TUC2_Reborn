@@ -34,3 +34,5 @@ D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\Windows\AdminControls\A
 D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\Views\ChallengeView.baml
 D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\Views\TestView.baml
 D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\Windows\AdminControls\AdminInterface.baml
+D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\Windows\UserControls\StudentInterface.g.cs
+D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\Windows\UserControls\StudentInterface.baml
