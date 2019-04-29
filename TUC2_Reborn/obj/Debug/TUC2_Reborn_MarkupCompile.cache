@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\App.xaml
-793329280
+8-1925060664
 
-20-1835241131
+211741326153
 17-1781444151
-MainWindow.xaml;Views\ChallengeView.xaml;Views\TestView.xaml;Views\UserView.xaml;Windows\AdminControls\AdminInterface.xaml;Windows\SignInWnd.xaml;Windows\UserControls\StudentInterface.xaml;
+MainWindow.xaml;Views\ChallengeSolverView.xaml;Views\ChallengeView.xaml;Views\TestView.xaml;Views\UserView.xaml;Windows\AdminControls\AdminInterface.xaml;Windows\SignInWnd.xaml;Windows\UserControls\StudentInterface.xaml;
 
 False
 

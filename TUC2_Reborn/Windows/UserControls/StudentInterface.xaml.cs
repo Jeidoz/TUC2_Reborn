@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TUC2_Reborn.Views;
 
 namespace TUC2_Reborn.Windows.UserControls
 {
@@ -45,7 +46,7 @@ namespace TUC2_Reborn.Windows.UserControls
             switch (selectedItem.Name)
             {
                 case "Challenges":
-                    //activeControl = new ChallengeView();
+                    activeControl = new ChallengeSolverView();
                     break;
                 case "Logout":
                     var mainWnd = Window.GetWindow(this) as MainWindow;
