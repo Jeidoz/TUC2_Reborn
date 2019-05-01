@@ -64,8 +64,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\ChallengeModel.cs" />
+    <Compile Include="Models\TestingAction.cs" />
     <Compile Include="Models\TestModel.cs" />
+    <Compile Include="TestingDataTypes\CompilationResult.cs" />
+    <Compile Include="TestingDataTypes\RuntimeResult.cs" />
     <Compile Include="ViewModels\ChallengeViewModel.cs" />
+    <Compile Include="ViewModels\TestingActionViewModel.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="Views\ChallengeSolverView.xaml.cs">
@@ -88,6 +92,9 @@
     </Compile>
     <Compile Include="Windows\UserControls\StudentInterface.xaml.cs">
       <DependentUpon>StudentInterface.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserControls\TestingWnd.xaml.cs">
+      <DependentUpon>TestingWnd.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -128,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\UserControls\StudentInterface.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\TestingWnd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -38,3 +38,5 @@ D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\Windows\UserControls\St
 D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\Windows\UserControls\StudentInterface.baml
 D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\Views\ChallengeSolverView.g.cs
 D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\Views\ChallengeSolverView.baml
+D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\Windows\UserControls\TestingWnd.g.cs
+D:\Sources\My Projects\TUC2_Reborn\TUC2_Reborn\obj\Debug\Windows\UserControls\TestingWnd.baml

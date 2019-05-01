@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using Microsoft.Win32;
 using TUC2_Reborn.Models;
 using TUC2_Reborn.ViewModels;
+using TUC2_Reborn.Windows.UserControls;
 
 namespace TUC2_Reborn.Views
 {
@@ -26,6 +27,7 @@ namespace TUC2_Reborn.Views
     {
         private readonly string _currentDirectory;
         private int _selectedChallengeIndex;
+        private string _selectedSourseFileDist;
         private ObservableCollection<ChallengeModel> _challenges;
         private ObservableCollection<ChallengeModel> _currentChallenge;
 
@@ -44,6 +46,7 @@ namespace TUC2_Reborn.Views
             ChallengeNumber.Text = $"{_selectedChallengeIndex + 1} / {_challenges.Count}";
             ChallengeList.ItemsSource = _challenges;
             ItemsControl.ItemsSource = _currentChallenge;
+            ChangeCurrentChallengeData();
         }
 
         private void ChangeCurrentChallengeData()
@@ -52,6 +55,7 @@ namespace TUC2_Reborn.Views
                 return;
 
             _currentChallenge[0] = _challenges[_selectedChallengeIndex];
+            ChallengeList.SelectedIndex = _selectedChallengeIndex;
         }
         private void ChangeCurrentChallengeData(int challengeIndex)
         {
@@ -100,16 +104,17 @@ namespace TUC2_Reborn.Views
             {
                 var fileName = new FileInfo(openFileDlg.FileName);
                 var codesDir = Path.Combine(_currentDirectory, "Codes");
-                var distPath = Path.Combine(codesDir, fileName.Name);
+                _selectedSourseFileDist = Path.Combine(codesDir, fileName.Name);
                 ClearCodeFilesFolder();
-                File.Copy(fileName.FullName, distPath);
+                File.Copy(fileName.FullName, _selectedSourseFileDist);
                 this.CodeFileName.Text = fileName.Name;
                 this.CheckSolution.IsEnabled = true;
             }
         }
         private void CheckSolution_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var testingWnd = new TestingWnd(_currentChallenge[0], _selectedSourseFileDist);
+            testingWnd.ShowDialog();
         }
         private void PreviusChallenge_Click(object sender, RoutedEventArgs e)
         {
