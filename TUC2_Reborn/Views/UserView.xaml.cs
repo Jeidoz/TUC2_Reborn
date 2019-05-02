@@ -62,6 +62,11 @@ namespace TUC2_Reborn.Views
                 && isFatherNameNotEmpty
                 && isRoleSelected;
         }
+        private bool IsLoginedUserHasBeenSelected()
+        {
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+            return _currentUser[0].Id == mainWindow.LoginedUser.Id;
+        }
         private void Users_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (Users.SelectedIndex < 0)
@@ -130,6 +135,11 @@ namespace TUC2_Reborn.Views
         }
         private void RemoveUser_OnClick(object sender, RoutedEventArgs e)
         {
+            if (IsLoginedUserHasBeenSelected())
+            {
+                MessageBox.Show("Неможливо видалити самого себе!", "Видалення самого себе?", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             UserModel usr = _currentUser[0];
 
             string message = $"Ви точно бажаєте видалити цього користувача:\n"

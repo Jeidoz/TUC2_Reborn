@@ -3,6 +3,8 @@ using DataBaseManager.Exceptions;
 using LiteDB;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace DataBaseManager
 {
@@ -71,6 +73,41 @@ namespace DataBaseManager
             Challenges = _databaseInstance.GetCollection<Challenge>("challenges");
         }
 
+        //Hashers
+        public byte[] GetSalt(int maximumSaltLength = 32)
+        {
+            var salt = new byte[maximumSaltLength];
+            using (var random = new RNGCryptoServiceProvider())
+            {
+                random.GetNonZeroBytes(salt);
+            }
+
+            return salt;
+        }
+        public byte[] GetSaltedHash(string originPassword, byte[] salt = null)
+        {
+            var algorithm = new SHA256Managed();
+            if (salt == null)
+                salt = GetSalt();
+            byte[] plainText = Encoding.UTF8.GetBytes(originPassword);
+
+            byte[] plainTextWithSaltBytes = new byte[plainText.Length + salt.Length];
+
+            for (int i = 0; i < plainText.Length; i++)
+                plainTextWithSaltBytes[i] = plainText[i];
+
+            for (int i = 0; i < salt.Length; i++)
+                plainTextWithSaltBytes[plainText.Length + i] = salt[i];
+
+            return algorithm.ComputeHash(plainTextWithSaltBytes);
+        }
+        public bool CompareHash(string attemptedPassword, byte[] hash, byte[] salt)
+        {
+            string base64Hash = Convert.ToBase64String(hash);
+            string base64AttemptedHash = Convert.ToBase64String(GetSaltedHash(attemptedPassword, salt));
+
+            return base64Hash == base64AttemptedHash;
+        }
         // CHECKERS
         public bool IsUserExist(int id)
         {
@@ -86,12 +123,6 @@ namespace DataBaseManager
             if (dbUser == null)
                 return false;
             return dbUser.Login != exceptionLogin;
-        }
-        public bool IsPasswordsSame(string comparingPassword, string userPassword)
-        {
-            //TODO 
-            // Compare hashes of passwords in future
-            return comparingPassword == userPassword;
         }
         public bool IsChallengeExist(int id)
         {

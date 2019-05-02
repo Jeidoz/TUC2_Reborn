@@ -42,7 +42,7 @@ namespace TUC2_Reborn.Windows
             var dbUser = GlobalHelper.Database.GetUser(login);
             UserModel loginedUser = DataMapper.Map(dbUser);
 
-            if (!GlobalHelper.Database.IsPasswordsSame(password, loginedUser.Password))
+            if (!GlobalHelper.Database.CompareHash(password, dbUser.PasswordHash, dbUser.PasswordSalt))
             {
                 string caption = "Неправильний пароль";
                 string message = "Введений пароль є неправильним";

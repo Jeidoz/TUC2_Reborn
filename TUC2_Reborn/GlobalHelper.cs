@@ -4,7 +4,7 @@ namespace TUC2_Reborn
 {
     public static class GlobalHelper
     {
-        public static DatabaseContext Database = new DatabaseContext("test.db");
+        public static DatabaseContext Database = new DatabaseContext("Tuc2.db");
         public const string TeacherRoleName = "Викладач";
         public const string StudentRoleName = "Студент";
 
