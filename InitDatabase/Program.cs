@@ -10,7 +10,7 @@ namespace InitDatabase
     class Program
     {
         private const string DatabaseFileName = "Tuc2.db";
-        static readonly DatabaseContext Context = new DatabaseContext(DatabaseFileName);
+        static readonly DatabaseContext Context = new DatabaseContext(DatabaseFileName, "0951431404Tuc2");
 
         static void Main(string[] args)
         {

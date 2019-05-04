@@ -48,15 +48,24 @@ namespace TUC2_Reborn.Views
         private bool IsAllFieldsFilled()
         {
             UserModel focusedUser = _currentUser[0];
+            bool isNewUser = focusedUser.Id == 0;
             bool isLoginNotEmpty = !string.IsNullOrWhiteSpace(focusedUser.Login);
             bool isPasswordNotEmpty = !string.IsNullOrWhiteSpace(focusedUser.Password);
             bool isFirstNameNotEmpty = !string.IsNullOrWhiteSpace(focusedUser.FirstName);
             bool isLastNameNotEmpty = !string.IsNullOrWhiteSpace(focusedUser.LastName);
             bool isFatherNameNotEmpty = !string.IsNullOrWhiteSpace(focusedUser.FatherName);
             bool isRoleSelected = focusedUser.RoleIndex != (int)GlobalHelper.RoleIndex.NotSelected;
+            if (isNewUser)
+            {
+                return isLoginNotEmpty
+                       && isPasswordNotEmpty
+                       && isFirstNameNotEmpty
+                       && isLastNameNotEmpty
+                       && isFatherNameNotEmpty
+                       && isRoleSelected;
+            }
 
             return isLoginNotEmpty
-                && isPasswordNotEmpty
                 && isFirstNameNotEmpty
                 && isLastNameNotEmpty
                 && isFatherNameNotEmpty
@@ -83,7 +92,7 @@ namespace TUC2_Reborn.Views
                 FirstName = default,
                 LastName = default,
                 FatherName = default,
-                Password = default,
+                Password = "1",
                 RoleIndex = (int)GlobalHelper.RoleIndex.NotSelected
             };
             _users.Add(newUser);
@@ -92,9 +101,17 @@ namespace TUC2_Reborn.Views
         }
         private void SaveUser_OnClick(object sender, RoutedEventArgs e)
         {
+            bool isNewUser = _currentUser[0].Id == 0;
+            var oldDbUser = GlobalHelper.Database.GetUser(_currentUser[0].Id);
+            UserModel oldUser = new UserModel();
+            if(oldDbUser != null)
+                oldUser = DataMapper.Map(oldDbUser);
+
             if (!IsAllFieldsFilled())
             {
                 MessageBox.Show("Заповніть усі поля!", "Пусті поля", MessageBoxButton.OK, MessageBoxImage.Warning);
+                if(!isNewUser)
+                    _currentUser[0] = oldUser;
                 return;
             }
 
@@ -110,6 +127,8 @@ namespace TUC2_Reborn.Views
                     return;
                 }
 
+                focusedUser.PasswordSalt = GlobalHelper.Database.GetSalt();
+                focusedUser.PasswordHash = GlobalHelper.Database.GetSaltedHash(usr.Password, focusedUser.PasswordSalt);
                 int userId = GlobalHelper.Database.AddUser(focusedUser);
                 usr.Id = userId;
 
@@ -123,8 +142,14 @@ namespace TUC2_Reborn.Views
                 if (GlobalHelper.Database.IsLoginExistExcept(usr.Login, oldLogin))
                 {
                     MessageBox.Show($"Логін '{usr.Login}' зайнятий іншим користувачем!", "Зайнятий логін", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    _currentUser[0] = oldUser;
                     return;
                 }
+
+                var dbUser = GlobalHelper.Database.GetUser(usr.Id);
+                focusedUser.PasswordSalt = dbUser.PasswordSalt;
+                focusedUser.PasswordHash = string.IsNullOrWhiteSpace(usr.Password) ? dbUser.PasswordHash : GlobalHelper.Database.GetSaltedHash(usr.Password, focusedUser.PasswordSalt);
+
                 GlobalHelper.Database.UpdateUser(focusedUser);
 
                 message = $"Дані про користувача із іменем '{usr.FullName}'\n"

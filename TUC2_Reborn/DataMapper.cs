@@ -27,7 +27,7 @@ namespace TUC2_Reborn
             return new User
             {
                 Id = uiUser.Id,
-                Role = GlobalHelper.Database.GetRole(uiUser.RoleIndex),
+                Role = GlobalHelper.Database.GetRole(uiUser.RoleIndex + 1),
                 Login = uiUser.Login,
                 PasswordSalt = passwordSalt,
                 PasswordHash = hashedPassword,
