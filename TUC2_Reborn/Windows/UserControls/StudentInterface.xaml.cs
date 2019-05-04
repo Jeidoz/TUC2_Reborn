@@ -24,6 +24,7 @@ namespace TUC2_Reborn.Windows.UserControls
         public StudentInterface()
         {
             InitializeComponent();
+            MainGrid.Children.Add(new ChallengeSolverView());
         }
 
         private void OpenMenuButton_OnClick(object sender, RoutedEventArgs e)

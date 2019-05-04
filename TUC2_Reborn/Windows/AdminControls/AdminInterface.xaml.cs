@@ -12,6 +12,7 @@ namespace TUC2_Reborn.Windows.AdminControls
         public AdminTemplate()
         {
             InitializeComponent();
+            MainGrid.Children.Add(new UserView());
         }
 
         private void OpenMenuButton_OnClick(object sender, RoutedEventArgs e)
